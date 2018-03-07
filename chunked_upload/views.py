@@ -26,7 +26,7 @@ class ChunkedUploadBaseView(View):
         By default, users can only continue uploading their own uploads.
         """
         queryset = self.model.objects.all()
-        if hasattr(request, 'user') and request.user.is_authenticated():
+        if hasattr(request, 'user') and request.user.is_authenticated:
             queryset = queryset.filter(user=request.user)
         return queryset
 
@@ -175,7 +175,7 @@ class ChunkedUploadView(ChunkedUploadBaseView):
             self.is_valid_chunked_upload(chunked_upload)
         else:
             attrs = {'filename': chunk.name}
-            if hasattr(request, 'user') and request.user.is_authenticated():
+            if hasattr(request, 'user') and request.user.is_authenticated:
                 attrs['user'] = request.user
             attrs.update(self.get_extra_attrs(request))
             chunked_upload = self.create_chunked_upload(save=False, **attrs)
