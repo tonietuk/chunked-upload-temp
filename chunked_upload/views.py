@@ -75,7 +75,7 @@ class ChunkedUploadBaseView(View):
         """
         Grants permission to start/continue an upload based on the request.
         """
-        if hasattr(request, 'user') and not request.user.is_authenticated():
+        if hasattr(request, 'user') and not request.user.is_authenticated:
             raise ChunkedUploadError(
                 status=http_status.HTTP_403_FORBIDDEN,
                 detail='Authentication credentials were not provided'
